@@ -1,5 +1,6 @@
 import re
 import os
+from pathlib import Path
 
 # Regex key:
 # ' *' means any number of spaces
@@ -88,7 +89,8 @@ def sync(directory, combined_file):
 
     # reverse the order to prevent the start/end values from changing
     for start, end, indent, file, textlines in reversed(get_all_blocks(combined_file)):
-        file_path = directory + file
+        #file_path = directory + file
+        file_path = f"{directory}\\{file}"
         file_contents = get_file_contents(file_path)
         if file_contents != textlines:
             file_modified = os.path.getmtime(file_path)
@@ -103,6 +105,16 @@ def sync(directory, combined_file):
 if __name__ == '__main__':
     import sys # replace with argparser
     import time
+    ######## test 1
+    PROJECT_DIR = Path(__file__).parent
+    originfolder = PROJECT_DIR / 'project'
+    destination = PROJECT_DIR / 'combined/combined.py'
+    sys.argv.append(str(originfolder.resolve()))
+    sys.argv.append(str(destination.resolve()))
+    input_path = sys.argv[1] # entry file or directory
+    output_file = sys.argv[2]
+    #########################
+
     directory = sys.argv[1]
     combined_file = sys.argv[2]
 
