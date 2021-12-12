@@ -22,6 +22,7 @@ class burn_after_reading:
 
 fake_module_preamble_str = \
 """\
+from __future__ import annotations
 import sys
 from types import ModuleType
 
@@ -175,16 +176,16 @@ def combine_into_one_file(package_dir, main_file='__main__.py', out='_combined.p
 
 if __name__ == '__main__':
     import sys # replace with argparser
-    if len(sys.argv) == 1 :
-        ######## hardcoded structure
-        PROJECT_DIR = Path(__file__).parent
-        originfolder = PROJECT_DIR / 'project'
-        destination = PROJECT_DIR / 'combined/combined.py'
-        sys.argv.append(str(originfolder.resolve()))
-        sys.argv.append(str(destination.resolve()))
-        input_path = sys.argv[1] # entry file or directory
-        output_file = sys.argv[2]
-        #########################
+    ######## hardcoded structure
+    projectname = sys.argv[1] if len(sys.argv) == 2 else 'project'
+    PROJECT_DIR = Path(__file__).parent
+    originfolder = PROJECT_DIR / projectname
+    destination = PROJECT_DIR / 'combined'/f'{projectname}.py'
+    sys.argv.append(str(originfolder.resolve()))
+    sys.argv.append(str(destination.resolve()))
+    input_path = sys.argv[1] # entry file or directory
+    output_file = sys.argv[2]
+    #########################
 
     if os.path.isfile(input_path):
         start_dir, start_file = os.path.split(input_path)
