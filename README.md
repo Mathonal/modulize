@@ -1,3 +1,15 @@
+# personnal notes/add
+
+scripts work with os.path lib and absolute paths.
+in order to ease the command usage, I hard-coded project and combined paths and names so that 
+scripts run without argument run like the following : 
+[`combine_py_files.py`](#combine) : search for `project/__main__.py` in repos root 
+and create `combined/combined.py`   
+[`sync_combined_py_files.py`](#sync) : search for the same tree in repo.
+
+if run with arguments, script will follow inputted arguments but scripts 
+as they are are not really verbosy on errors :/
+
 # Python Modulization #
 
 This project contains three Python tools:

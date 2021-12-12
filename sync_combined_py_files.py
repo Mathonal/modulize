@@ -105,15 +105,17 @@ def sync(directory, combined_file):
 if __name__ == '__main__':
     import sys # replace with argparser
     import time
-    ######## test 1
-    PROJECT_DIR = Path(__file__).parent
-    originfolder = PROJECT_DIR / 'project'
-    destination = PROJECT_DIR / 'combined/combined.py'
-    sys.argv.append(str(originfolder.resolve()))
-    sys.argv.append(str(destination.resolve()))
-    input_path = sys.argv[1] # entry file or directory
-    output_file = sys.argv[2]
-    #########################
+
+    if len(sys.argv) == 1:
+        ######## hardcoded structure
+        PROJECT_DIR = Path(__file__).parent
+        originfolder = PROJECT_DIR / 'project'
+        destination = PROJECT_DIR / 'combined/combined.py'
+        sys.argv.append(str(originfolder.resolve()))
+        sys.argv.append(str(destination.resolve()))
+        input_path = sys.argv[1] # entry file or directory
+        output_file = sys.argv[2]
+        #########################
 
     directory = sys.argv[1]
     combined_file = sys.argv[2]

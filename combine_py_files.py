@@ -175,15 +175,16 @@ def combine_into_one_file(package_dir, main_file='__main__.py', out='_combined.p
 
 if __name__ == '__main__':
     import sys # replace with argparser
-    ######## test 1
-    PROJECT_DIR = Path(__file__).parent
-    originfolder = PROJECT_DIR / 'project'
-    destination = PROJECT_DIR / 'combined/combined.py'
-    sys.argv.append(str(originfolder.resolve()))
-    sys.argv.append(str(destination.resolve()))
-    input_path = sys.argv[1] # entry file or directory
-    output_file = sys.argv[2]
-    #########################
+    if len(sys.argv) == 1 :
+        ######## hardcoded structure
+        PROJECT_DIR = Path(__file__).parent
+        originfolder = PROJECT_DIR / 'project'
+        destination = PROJECT_DIR / 'combined/combined.py'
+        sys.argv.append(str(originfolder.resolve()))
+        sys.argv.append(str(destination.resolve()))
+        input_path = sys.argv[1] # entry file or directory
+        output_file = sys.argv[2]
+        #########################
 
     if os.path.isfile(input_path):
         start_dir, start_file = os.path.split(input_path)
